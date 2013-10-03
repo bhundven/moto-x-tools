@@ -10,5 +10,5 @@ setup(
     url='https://github.com/bhundven/moto-x-tools',
     license='LICENSE.txt',
     description='Handy tools for your Motorola Moto X',
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
 )
