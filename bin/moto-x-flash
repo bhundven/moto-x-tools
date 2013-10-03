@@ -9,54 +9,60 @@
 import os, sys
 import xml.etree.ElementTree as ET
 import hashlib as HL
-from subprocess import call
+from fastboot import *
 
-# TODO: This code should be functionalized. I did this as a quick hack, but should work properly.
 # Tested on:
-#     AT&T XT1058 - 16G.
+#     Operating Systems:
+#      * Mac OS X 10.8
+#      * Ubuntu Linux 13.04 Raring Ringtail
+#     Devices:
+#      * AT&T XT1058 - 16G
 
 firmware_xml = sys.argv[1]
-fail = 0
+retval = 0
 
 tree = ET.parse(firmware_xml)
 root = tree.getroot()
 
+def checkMD5(filename, origMD5):
+    """ Check an md5sum """
+    check_pass = False
+    calcMD5 = HL.md5(open(filename, 'rb').read()).hexdigest()
+    if calcMD5 == origMD5:
+        check_pass = True
+    else:
+        print("md5 Checksum for " + filename + " did not match!")
+        print("original md5sum: " + origMD5)
+        print("calculated md5sum: " + calcMD5)
+    return check_pass
+
 for i in root.iter('step'):
     # Skip getvar operations.
     if i.get('operation') == 'getvar':
+        #var = i.get('var')
+        #value = getvar(var)
+	# Do something with the value!?!
         continue
     elif i.get('operation') == 'flash':
         MD5 = i.get('MD5').lower()
         f2flsh = i.get('filename')
         part = i.get('partition')
-        f2flshMD5 = HL.md5(open(f2flsh, 'rb').read()).hexdigest()
-        if f2flshMD5 != MD5:
-            print("MD5 Checksum for " + f2flsh + " did not match!")
-            print("MD5SUM in the xml file:      " + MD5)
-            print("MD5SUM calculated from file: " + f2flshMD5)
-            fail = 1
-            break
-        print("Running: fastboot flash " + part + " " + f2flsh)
-        if call('fastboot' + ' flash ' + part + ' ' + f2flsh, shell=True) < 0:
-            print("Command failed!")
-            fail = 1
-            break
+        if checkMD5(f2flsh, MD5):
+            retval = flash(f2flsh, part)
+        else:
+            #md5sum check failed.
+            retval = 1
     elif i.get('operation') == 'erase':
         part = i.get('partition')
-        print("Running: fastboot erase " + part)
-        if call('fastboot' + ' erase ' + part, shell=True) < 0:
-            print("Command failed!")
-            fail = 1
-            break
+        retval = erase(part)
     elif i.get('operation') == 'oem':
         var = i.get('var')
-        print("Running: fastboot oem " + var)
-        if call('fastboot' + ' oem ' + var, shell=True) < 0:
-            print("Command failed!")
-            fail = 1
-            break
+        retval = oem(var)
+    # Break if we had a problem.
+    if retval == 1:
+        break
 
-if fail == 1:
+if retval == 1:
     print("Something bad happened!")
     sys.exit(1)
 else:
