@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='moto-x-tools',
-    version='0.1.1',
+    version='0.2.0',
     author='Bryan Hundven',
     author_email='bryanhundven@gmail.com',
     packages=['fastboot'],

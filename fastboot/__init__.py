@@ -10,7 +10,7 @@ __author__ = 'Bryan Hundven'
 __maintainer__ = 'Bryan Hundven'
 __email__ = 'bryanhundven@gmail.com'
 __copyright__ = 'Copyright (C) 2013, Bryan Hundven <bryanhundven@gmail.com>'
-__version__ = (0, 1, 1)
+__version__ = (0, 2, 0)
 
 __all__ = ['flash', 'erase', 'getvar', 'oem', 'reboot']
 
