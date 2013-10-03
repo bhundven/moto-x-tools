@@ -28,12 +28,12 @@ def checkMD5(filename, origMD5):
     """ Check an md5sum """
     check_pass = False
     calcMD5 = HL.md5(open(filename, 'rb').read()).hexdigest()
-    if calcMD5 == origMD5:
+    if calcMD5.lower() == origMD5.lower():
         check_pass = True
     else:
         print("md5 Checksum for " + filename + " did not match!")
-        print("original md5sum: " + origMD5)
-        print("calculated md5sum: " + calcMD5)
+        print("original md5sum: " + origMD5.lower())
+        print("calculated md5sum: " + calcMD5.lower())
     return check_pass
 
 for i in root.iter('step'):
