@@ -67,4 +67,5 @@ if retval == 1:
     sys.exit(1)
 else:
     print("Flashing was successful!")
+    reboot()
     sys.exit(0)
