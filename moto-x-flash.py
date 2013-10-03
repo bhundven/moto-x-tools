@@ -34,26 +34,26 @@ for i in root.iter('step'):
             print("MD5 Checksum for " + f2flsh + " did not match!")
             print("MD5SUM in the xml file:      " + MD5)
             print("MD5SUM calculated from file: " + f2flshMD5)
-	    fail = 1
+            fail = 1
             break
         print("Running: fastboot flash " + part + " " + f2flsh)
         if call('fastboot' + ' flash ' + part + ' ' + f2flsh, shell=True) < 0:
             print("Command failed!")
-	    fail = 1
+            fail = 1
             break
     elif i.get('operation') == 'erase':
         part = i.get('partition')
         print("Running: fastboot erase " + part)
         if call('fastboot' + ' erase ' + part, shell=True) < 0:
             print("Command failed!")
-	    fail = 1
+            fail = 1
             break
     elif i.get('operation') == 'oem':
         var = i.get('var')
         print("Running: fastboot oem " + var)
         if call('fastboot' + ' oem ' + var, shell=True) < 0:
             print("Command failed!")
-	    fail = 1
+            fail = 1
             break
 
 if fail == 1:
