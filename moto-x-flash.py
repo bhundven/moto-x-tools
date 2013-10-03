@@ -29,7 +29,7 @@ for i in root.iter('step'):
         MD5 = i.get('MD5').lower()
         f2flsh = i.get('filename')
         part = i.get('partition')
-        f2flshMD5 = HL.md5(open(f2flsh).read()).hexdigest()
+        f2flshMD5 = HL.md5(open(f2flsh, 'rb').read()).hexdigest()
         if f2flshMD5 != MD5:
             print("MD5 Checksum for " + f2flsh + " did not match!")
             print("MD5SUM in the xml file:      " + MD5)
