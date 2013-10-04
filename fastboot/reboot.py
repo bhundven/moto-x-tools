@@ -17,7 +17,7 @@ def reboot():
     print("\nRunning: fastboot reboot")
     if call('fastboot' + ' reboot', shell=True) < 0:
         print("*** Reboot command failed! ***")
-	retval = 1
+	retval = 4
     return retval
 
 def reboot_bootloader():
@@ -26,5 +26,5 @@ def reboot_bootloader():
     print("\nRunning: fastboot reboot-bootloader")
     if call('fastboot' + ' reboot-bootloader', shell=True) < 0:
         print("*** Reboot-bootloader command failed! ***")
-        retval = 1
+        retval = 4
     return retval

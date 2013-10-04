@@ -17,5 +17,5 @@ def oem(command):
     print("\nRunning: fastboot oem " + command)
     if call('fastboot' + ' oem ' + command, shell=True) < 0:
         print("*** oem command failed! ***")
-	retval = 1
+	retval = 4
     return retval

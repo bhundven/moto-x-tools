@@ -17,5 +17,5 @@ def erase(partition):
     print("\nRunning: fastboot erase " + partition)
     if call('fastboot' + ' erase ' + partition, shell=True) < 0:
         print("*** Erase command failed! ***")
-	retval = 1
+	retval = 3
     return retval

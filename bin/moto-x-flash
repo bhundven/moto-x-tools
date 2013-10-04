@@ -19,6 +19,13 @@ from fastboot import *
 #      * AT&T XT1058 - 16G
 
 firmware_xml = sys.argv[1]
+
+# retval return codes:
+# 0: Success!
+# 1: MD5SUM Check failed!
+# 2: Flash Operation failed!
+# 3: Erase Operation failed!
+# 4: Command Operation failed (oem, getvar, reboot, etc.)!
 retval = 0
 
 tree = ET.parse(firmware_xml)
@@ -59,12 +66,12 @@ for i in root.iter('step'):
         var = i.get('var')
         retval = oem(var)
     # Break if we had a problem.
-    if retval == 1:
+    if retval != 0:
         break
 
-if retval == 1:
+if retval != 0:
     print("Something bad happened!")
-    sys.exit(1)
+    sys.exit(retval)
 else:
     print("Flashing was successful!")
     reboot()

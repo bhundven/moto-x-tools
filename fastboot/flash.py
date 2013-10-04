@@ -17,5 +17,5 @@ def flash(filename, partition):
     print("\nRunning: fastboot flash " + partition + " " + filename)
     if call('fastboot' + ' flash ' + partition + " " + filename, shell=True) < 0:
         print("*** Flash command failed! ***")
-	retval = 1
+	retval = 2
     return retval
