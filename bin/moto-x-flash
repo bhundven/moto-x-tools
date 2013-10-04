@@ -43,6 +43,20 @@ def checkMD5(filename, origMD5):
         print("calculated md5sum: " + calcMD5.lower())
     return check_pass
 
+# First check md5sum checks!
+for i in root.iter('step'):
+    if i.get('operation') == 'flash':
+        MD5 = i.get('MD5').lower()
+        f2flsh = i.get('filename')
+        part = i.get('partition')
+        if checkMD5(f2flsh, MD5) == False:
+            #md5sum check failed.
+            retval = 1
+    # Break if we had a problem.
+    if retval == 1:
+        sys.exit(1)
+
+# Now Actually run the commands!
 for i in root.iter('step'):
     # Skip getvar operations.
     if i.get('operation') == 'getvar':
@@ -51,14 +65,9 @@ for i in root.iter('step'):
 	# Do something with the value!?!
         continue
     elif i.get('operation') == 'flash':
-        MD5 = i.get('MD5').lower()
         f2flsh = i.get('filename')
         part = i.get('partition')
-        if checkMD5(f2flsh, MD5):
-            retval = flash(f2flsh, part)
-        else:
-            #md5sum check failed.
-            retval = 1
+        retval = flash(f2flsh, part)
     elif i.get('operation') == 'erase':
         part = i.get('partition')
         retval = erase(part)
