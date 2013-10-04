@@ -12,5 +12,5 @@ __copyright__ = 'Copyright (C) 2013, Bryan Hundven <bryanhundven@gmail.com>'
 from subprocess import check_output, STDOUT
 
 def getvar(variable):
-    '''Return a bootloader variable'''
-    return check_output(['fastboot', 'getvar', variable], stderr=STDOUT)
+    '''Return a dictionary from a single bootloader variable (don't use 'all')'''
+    return dict([check_output(['fastboot', 'getvar', variable], stderr=STDOUT).split('\n')[0].replace(" ", "").split(":", 1),])
