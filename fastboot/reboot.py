@@ -19,3 +19,12 @@ def reboot():
         print("*** Reboot command failed! ***")
 	retval = 1
     return retval
+
+def reboot_bootloader():
+    '''Reboot the connected device back into fastboot'''
+    retval = 0
+    print("\nRunning: fastboot reboot-bootloader")
+    if call('fastboot' + ' reboot-bootloader', shell=True) < 0:
+        print("*** Reboot-bootloader command failed! ***")
+        retval = 1
+    return retval
