@@ -7,7 +7,7 @@ Commands to flash partitions.
 __author__ = 'Bryan Hundven'
 __maintainer__ = 'Bryan Hundven'
 __email__ = 'bryanhundven@gmail.com'
-__copyright__ = 'Copyright (C) 2013, Bryan Hundven <bryanhundven@gmail.com>'
+__copyright__ = 'Copyright (C) 2013-2014, Bryan Hundven <bryanhundven@gmail.com>'
 
 from subprocess import call
 
