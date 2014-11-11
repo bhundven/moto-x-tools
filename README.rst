@@ -1,14 +1,10 @@
-============
-Moto X Tools
-============
+==========
+pyfastboot
+==========
 
-Moto X Tools is a collection of scripts to help you manage your Motorola Moto X.
+pyfastboot is a wrapper library for the fastboot utility from the android sdk.
+Originally, I made this as a tool for a specific phone (Moto X), but later decided that it could be more generic then that.
 
-Currently, there is only the moto-x-flash tool, which reads the XML file from
-FXZ stock firmware to flash your device back to stock. Usually, these FXZ zip
-files are read by a tool called RSDLite. This script is a replacement for that.
-
-If you find any problems, please use the `issue tracker <https://github.com/bhundven/moto-x-tools/issues>`_.
-Official releases can be found `here <https://github.com/bhundven/moto-x-tools/releases>`_.
-The github repository is `here <https://github.com/bhundven/moto-x-tools>`_.
-And the official XDA Developers thread can be found `here <http://forum.xda-developers.com/showthread.php?t=2467595>`_.
+If you find any problems, please use the `issue tracker <https://github.com/bhundven/pyfastboot/issues>`_.
+Official releases can be found `here <https://github.com/bhundven/pyfastboot/releases>`_.
+The github repository is `here <https://github.com/bhundven/pyfastboot>`_.

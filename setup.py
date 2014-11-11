@@ -1,14 +1,13 @@
 from distutils.core import setup
 
 setup(
-    name='moto-x-tools',
-    version='0.2.0',
+    name='pyfastboot',
+    version='0.0.1',
     author='Bryan Hundven',
     author_email='bryanhundven@gmail.com',
     packages=['fastboot'],
-    scripts=['bin/moto-x-flash'],
-    url='https://github.com/bhundven/moto-x-tools',
+    url='https://github.com/bhundven/pyfastboot',
     license='LICENSE.txt',
-    description='Handy tools for your Motorola Moto X',
+    description='A python wrapper for fastboot',
     long_description=open('README.rst').read(),
 )
