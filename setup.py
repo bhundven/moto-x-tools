@@ -26,7 +26,7 @@ setup(
     author_email='bryanhundven@gmail.com',
     packages=['fastboot'],
     url='https://github.com/bhundven/pyfastboot',
-    license='LICENSE.txt',
+    license='GPLv2+',
     description='A python wrapper for fastboot',
     long_description=open('README.rst').read(),
 )
